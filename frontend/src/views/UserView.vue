@@ -1,25 +1,25 @@
 <script setup>
-  import axios from 'axios';
-  import { onMounted, ref } from 'vue';
-  import PageComponent from '../components/PageComponent.vue';
-  // reactive state
-  let posts = ref([]);
-  // mounted
-  onMounted(async () => {
-    // get api from laravel backend
-    await axios
-      .get('/posts')
-      .then((res) => {
-        // assign state posts with response data
-        posts.value = res.data.data;
-      })
-      .catch((error) => {
-        console.log(error.res.data);
-      });
-  });
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
+import PageComponent from '../components/PageComponent.vue';
+// reactive state
+let users = ref([]);
+// mounted
+onMounted(async () => {
+  // get api from laravel backend
+  await axios
+    .get('/users')
+    .then((res) => {
+      // assign state users with response data
+      users.value = res.data.data;
+    })
+    .catch((error) => {
+      console.log(error.res.data);
+    });
+});
 </script>
 <template>
-  <PageComponent title="Posts">
+  <PageComponent title="Users">
     <main class="container flex items-center justify-center h-screen mx-auto">
       <div class="flex flex-col">
         <div class="overflow-x-auto">
@@ -38,19 +38,13 @@
                       scope="col"
                       class="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                     >
-                      Title
+                      Name
                     </th>
                     <th
                       scope="col"
                       class="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
                     >
-                      Slug
-                    </th>
-                    <th
-                      scope="col"
-                      class="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase"
-                    >
-                      Description
+                      Email
                     </th>
                     <th
                       scope="col"
@@ -61,23 +55,20 @@
                   </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-                  <tr v-for="post in posts" :key="post.id">
+                  <tr v-for="user in users" :key="user.id">
                     <td
                       class="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap"
                     >
-                      {{ post.id }}
+                      {{ user.id }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                      {{ post.title }}
+                      {{ user.name }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                      {{ post.slug }}
+                      {{ user.email }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                      {{ post.description }}
-                    </td>
-                    <td class="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                      {{ post.created_at }}
+                      {{ user.created_at }}
                     </td>
                   </tr>
                 </tbody>
@@ -88,5 +79,4 @@
       </div>
     </main>
   </PageComponent>
-
 </template>

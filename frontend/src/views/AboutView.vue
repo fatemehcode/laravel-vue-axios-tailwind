@@ -1,10 +1,13 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <PageComponent title="About">
+    About page!
+  </PageComponent>
 </template>
+<script setup>
+  import PageComponent from '../components/PageComponent.vue';
+</script>
 
-<style>
+<style> 
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;

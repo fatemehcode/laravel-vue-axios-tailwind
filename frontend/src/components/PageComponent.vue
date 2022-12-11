@@ -102,6 +102,7 @@
     { name: 'Users', href: '/users', current: false },
     { name: 'Posts', href: '/posts', current: false },
     { name: 'About', href: '/about', current: false },
+    { name: 'Test', href: '/test', current: false },
     ]
   const userNavigation = [
     { name: 'Your Profile', href: '#' },

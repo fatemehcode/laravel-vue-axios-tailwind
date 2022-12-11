@@ -1,22 +1,22 @@
 <script setup>
-import axios from 'axios';
-import { onMounted, ref } from 'vue';
-import PageComponent from '../components/PageComponent.vue';
-// reactive state
-let users = ref([]);
-// mounted
-onMounted(async () => {
-  // get api from laravel backend
-  await axios
-    .get('/users')
-    .then((res) => {
-      // assign state users with response data
-      users.value = res.data.data;
-    })
-    .catch((error) => {
-      console.log(error.res.data);
-    });
-});
+  import axios from 'axios';
+  import { onMounted, ref } from 'vue';
+  import PageComponent from '../components/PageComponent.vue';
+  // reactive state
+  let users = ref([]);
+  // mounted
+  onMounted(async () => {
+    // get api from laravel backend
+    await axios
+      .get('/users')
+      .then((res) => {
+        // assign state users with response data
+        users.value = res.data.data;
+      })
+      .catch((error) => {
+        console.log(error.res.data);
+      });
+  });
 </script>
 <template>
   <PageComponent title="Users">
